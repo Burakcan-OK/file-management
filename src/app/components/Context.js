@@ -35,7 +35,7 @@ export const FolderProvider = ({ children }) => {
     const [search, setSearch] = useState("");
     const [previewFile, setPreviewFile] = useState(null);
 
-    const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL ;
+    const BASE_URL = process.env.NEXTAUTH_URL ;
 
     useEffect(() => {
         fetch('/api/getHeaders')
