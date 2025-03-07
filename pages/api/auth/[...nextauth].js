@@ -47,7 +47,10 @@ export default NextAuth({
             session.accessTokenExpires = token.accessTokenExpires;
             return session;
         },
-    }
+        async redirect({ url, baseUrl }) {
+            return baseUrl; // Kullanıcı giriş yaptıktan sonra direkt baseUrl'e yönlendirilir
+        },
+    },
 });
 
 // ✅ **Token süresi dolduğunda otomatik yenileyen fonksiyon**
