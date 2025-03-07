@@ -21,17 +21,12 @@ const parseForm = (req) => {
 };
 export default async function handler(req, res) {
     const session = await getSession({req})
-    const cookies = parse(req.headers.cookie || "");
-    const accessToken = session.accessToken; 
 
-    if (!accessToken) {
+    if (!session || !session.accessToken) {
         return res.status(401).json({ error: "Unauthorized - No access token" });
     }
-    const oauth2Client = new google.auth.OAuth2(
-    process.env.GOOGLE_CLIENT_ID,  // ✅ Client ID buraya
-    process.env.GOOGLE_CLIENT_SECRET,  // ✅ Client Secret buraya
-    "http://localhost:3000/api/auth/callback/google"  // ✅ Redirect URI ile uyuşmalı!
-        );
+
+    const oauth2Client = new google.auth.OAuth2();
     oauth2Client.setCredentials({ 
         access_token: session.accessToken,
         refresh_token: session.refreshToken,
