@@ -39,7 +39,7 @@ export default function Home() {
         <div>
             <h1 className="folder-container" >Dosya Yönetimi</h1>
             <div className="auth-buttons">
-                <p>Hoşgeldin, <strong>{user.name}</strong></p>
+                <p>Hoş Geldin, <strong>{user.name}</strong></p>
                 <button className="logout-btn" onClick={handleLogout}>Çıkış Yap</button>
             </div>
             {currentBlueFolder ? 
