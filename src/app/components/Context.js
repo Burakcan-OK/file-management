@@ -47,7 +47,7 @@ export const FolderProvider = ({ children }) => {
 
     const fetchBlueFolders = async () => {
         try {
-            const response = await fetch(`${BASE_URL}/api/upload?type=blue`, {
+            const response = await fetch(`/api/upload?type=blue`, {
                 headers: { "Content-Type": "application/json" }
             });
     
@@ -69,7 +69,7 @@ export const FolderProvider = ({ children }) => {
                 console.error("❌ Yetkilendirme Token'ı Yok!");
                 return;
             }
-            const response = await axios.post(`${BASE_URL}/api/upload`, 
+            const response = await axios.post(`/api/upload`, 
                 { name: newBlueFolderName, type: "blue" },
                 { headers: { "Content-Type": "application/json",
                     "Authorization": `Bearer ${session.accessToken}` 
@@ -87,7 +87,7 @@ export const FolderProvider = ({ children }) => {
         try {
             console.log("🚀 PUT isteği gönderiliyor:", { blueFolderId, newName });
 
-            const response = await axios.put(`${BASE_URL}/api/upload`, {
+            const response = await axios.put(`/api/upload`, {
                 type: "blue", 
                 blueFolderId,
                 newName,
@@ -111,7 +111,7 @@ export const FolderProvider = ({ children }) => {
     const deleteBlueFolder = async (blueFolderId) => {
         try {
             console.log("🚀 Silinecek Blue Folder ID:", blueFolderId);
-            const response = await axios.delete(`${BASE_URL}/api/upload`, {
+            const response = await axios.delete(`/api/upload`, {
                 params: {
                     type: "blue",
                     blueFolderId,
@@ -129,7 +129,7 @@ export const FolderProvider = ({ children }) => {
     };
     const fetchRedFolders = async (bluefFolderId) => {
         try {
-            const response = await fetch(`${BASE_URL}/api/upload?type=red&bluefFolderId=${bluefFolderId}`, {
+            const response = await fetch(`/api/upload?type=red&bluefFolderId=${bluefFolderId}`, {
                 headers: { "Content-Type": "application/json" }
             });
     
@@ -150,7 +150,7 @@ export const FolderProvider = ({ children }) => {
                 console.error("❌ Yetkilendirme Token'ı Yok!");
                 return;
             }
-            const response = await axios.post(`${BASE_URL}/api/upload`, 
+            const response = await axios.post(`/api/upload`, 
                 { name: newRedFolderName, blueFolderId: blueFolderId, type: "red" },
                 { headers: { "Content-Type": "application/json",
                     "Authorization": `Bearer ${session.accessToken}` 
@@ -168,7 +168,7 @@ export const FolderProvider = ({ children }) => {
         try {
             console.log("🚀 PUT isteği gönderiliyor:", { redFolderId, newName });
 
-            const response = await axios.put(`${BASE_URL}/api/upload`, {
+            const response = await axios.put(`/api/upload`, {
                 type: "red", 
                 redFolderId,
                 newName,
@@ -191,7 +191,7 @@ export const FolderProvider = ({ children }) => {
 
     const deleteRedFolder = async (redFolderId) => {
         try {
-            const response = await axios.delete(`${BASE_URL}/api/upload`, {
+            const response = await axios.delete(`/api/upload`, {
                 params: {
                     type: "red",
                     redFolderId,
@@ -215,7 +215,7 @@ export const FolderProvider = ({ children }) => {
     
         try {
             const response = await axios.post(
-                `${BASE_URL}/api/upload`,
+                `/api/upload`,
                 {
                     redFolderId,
                     metadata, // Gereksiz spread operatörünü kaldırdık
@@ -236,7 +236,7 @@ export const FolderProvider = ({ children }) => {
         }
     
         try {
-            const response = await axios.get(`${BASE_URL}/api/upload`, {
+            const response = await axios.get(`/api/upload`, {
                 params: { redFolderId, type: "getData" },
             });
             return response.data.metadata || null; // Eğer metadata yoksa `null` döndür
@@ -247,7 +247,7 @@ export const FolderProvider = ({ children }) => {
     };
     const getFile = async (redFolderId) => {
         try {
-            const response = await fetch(`${BASE_URL}/api/upload?type=getFile&redFolderId=${redFolderId}`, {
+            const response = await fetch(`/api/upload?type=getFile&redFolderId=${redFolderId}`, {
                 headers: { "Content-Type": "application/json" }
             });
     
@@ -276,7 +276,7 @@ export const FolderProvider = ({ children }) => {
             formData.append("file", file);
             formData.append("redFolderId", redFolderId);
             formData.append("type", "postFile"); // Backend için gerekli flag
-            const response = await axios.post(`${BASE_URL}/api/upload`, formData, {
+            const response = await axios.post(`/api/upload`, formData, {
                 headers: {
                     "Content-Type": "multipart/form-data", // ✅ Form verisi gönderiyoruz!
                     "Authorization": `Bearer ${session.accessToken}`
@@ -291,7 +291,7 @@ export const FolderProvider = ({ children }) => {
     };
     const deleteFile = async (currentFileId) => {
         try {
-            const response = await axios.delete(`${BASE_URL}/api/upload`, {
+            const response = await axios.delete(`/api/upload`, {
                 params: {
                     type: "deleteFile",
                     currentFileId,
