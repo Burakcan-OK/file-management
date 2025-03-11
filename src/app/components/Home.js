@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import BlueFolder from "./blueFolder";
 import RedFolder from "./redFolder";
 import FileUpload from "./fileUpload"
-import { useSession, signIn } from "next-auth/react";
+import { useSession, signIn, signOut } from "next-auth/react";
 
 export default function Home() {
     const { currentBlueFolder, currentRedFolder,setUser,user} = useFolderContext();
@@ -19,8 +19,7 @@ export default function Home() {
     }, [status, session]);
 
     const handleLogout = async () => {
-        await fetch("/api/auth/logout");
-        setUser(null);
+        await signOut({ callbackUrl: "/" }); 
     };
 
 
