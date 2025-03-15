@@ -69,11 +69,13 @@ const BlueFolder = () => {
     const cancelDelete = () => {
         setShowConfirmation(false);
     };
+    const collator = new Intl.Collator(undefined, { numeric: true, sensitivity: "base" });
+
     const filteredFolders = blueFolders
-        .slice() // Orijinal diziyi değiştirmemek için slice() kullanıyoruz
-        .sort((a, b) => a.name.localeCompare(b.name)) // Alfabetik sıralama
+        .slice()
+        .sort((a, b) => collator.compare(a.name, b.name)) // Doğal sıralama
         .filter(folder => 
-            folder.name.toLowerCase().includes(search.toLowerCase()) // Büyük-küçük harf duyarsız arama
+            folder.name.toLowerCase().includes(search.toLowerCase())
         );
 
     return (
