@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@material-tailwind/react": "^2.1.10",
     "@react-pdf-viewer/core": "^3.12.0",
     "axios": "^1.7.9",
     "canvas": "^3.1.0",
