@@ -98,8 +98,7 @@ const FileUpload = () => {
                     <Image src={bbGif} alt="gif" width={40} height={40} />
                 </Button>
                 <h3 className="ml-2 md:pt-1 text-sm md:text-lg">
-                    {currentBlueFolder?.split("/").pop()}'a ait 
-                    {currentRedFolder?.split("/").pop()} içindeki dosyalar
+                    {currentBlueFolder?.split("/").pop()}'a ait {currentRedFolder?.split("/").pop()} içindeki dosyalar
                 </h3>
             </div>
             {previewFile ? (
