@@ -82,7 +82,7 @@ const BlueFolder = () => {
         <div >
             <div className="flex text-xl justify-between space-x-2 mb-4 mt-0.5">
                 <h3 className=" w-full max-w-[16rem]" >Mavi Klasörler</h3>
-                <div className="relative flex  w-full max-w-[24rem]">
+                <div className="relative flex  w-full max-w-[20rem]">
                     <Input
                         type="text"
                         value={newBlueFolderName}
@@ -101,7 +101,7 @@ const BlueFolder = () => {
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
                     placeholder="Klasör Ara"
-                    className="px-4 py-2  w-full max-w-[16rem] border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-400"
+                    className="px-4 py-2 ml-8 w-full max-w-[16rem] border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-400"
                 />
             </div>
             <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-4 justify-center">

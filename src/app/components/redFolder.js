@@ -97,7 +97,7 @@ const RedFolder = () => {
                 </div>
                 <div className="relative flex w-full max-w-[24rem]">
                     <Input
-                        className=" px-4 py-2 w-full max-w-[16rem]  border rounded-lg shadow-sm  focus:outline-none focus:ring-2 focus:ring-purple-400"
+                        className=" px-4 py-2 w-full max-w-[20rem]  border rounded-lg shadow-sm  focus:outline-none focus:ring-2 focus:ring-purple-400"
                         type="text"
                         value={newRedFolderName}
                         onChange={(e) => setNewRedFolderName(e.target.value)}
@@ -110,7 +110,7 @@ const RedFolder = () => {
                     >Ekle</Button>
                 </div>
                 <Input
-                    className="px-4 py-2  w-full max-w-[16rem] border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-400"
+                    className="px-4 py-2 ml-8 w-full max-w-[16rem] border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-400"
                     type="text"
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
