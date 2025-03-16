@@ -31,14 +31,16 @@ export default NextAuth({
         async jwt({ token, account }) {
             if (account) {
                 token.accessToken = account.access_token;
-                token.refreshToken = account.refresh_token || process.env.GOOGLE_REFRESH_TOKEN;
-                token.accessTokenExpires = Date.now() + account.expires_in * 1000;
+                token.refreshToken = account.refresh_token; 
+                token.accessTokenExpires = Date.now() + account.expires_in * 1000; 
             }
-    
+
+            // Eğer accessToken süresi dolmadıysa, mevcut token'ı kullan
             if (Date.now() < token.accessTokenExpires) {
                 return token;
             }
-    
+
+            // Token süresi dolduysa refresh token kullanarak yenileyelim
             return await refreshAccessToken(token);
         },
         async session({ session, token }) {
@@ -46,9 +48,6 @@ export default NextAuth({
             session.refreshToken = token.refreshToken;
             session.accessTokenExpires = token.accessTokenExpires;
             return session;
-        },
-        async redirect({ url, baseUrl }) {
-            return baseUrl; // Kullanıcı giriş yaptıktan sonra direkt baseUrl'e yönlendirilir
         },
     },
 });
@@ -62,7 +61,7 @@ async function refreshAccessToken(token) {
             body: new URLSearchParams({
                 client_id: process.env.GOOGLE_CLIENT_ID,
                 client_secret: process.env.GOOGLE_CLIENT_SECRET,
-                refresh_token: token.refreshToken || process.env.GOOGLE_REFRESH_TOKEN,
+                refresh_token: token.refreshToken,
                 grant_type: "refresh_token",
             }),
         });
@@ -78,8 +77,7 @@ async function refreshAccessToken(token) {
             refreshToken: refreshedTokens.refresh_token ?? token.refreshToken, 
         };
     } catch (error) {
-        console.error("🔴 Refresh Token Yenilenirken Hata:", error);
+        console.error("Token yenilenirken hata oluştu:", error);
         return { ...token, error: "RefreshAccessTokenError" };
     }
 }
-
