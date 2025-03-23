@@ -130,7 +130,7 @@ const BlueFolder = () => {
                                         }}
                                     >Kaydet</button>
                                     <button
-                                        className="bg-red-500 px-4 py-1 rounded-md text-white text-xs sm:text-sm "
+                                        className="z-10 bg-red-500 px-4 py-1 rounded-md text-white text-xs sm:text-sm "
                                         onClick={() => {
                                             console.log("edited")
                                             setEditMode(false)}}

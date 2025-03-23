@@ -142,7 +142,7 @@ const RedFolder = () => {
                                         }}
                                     >Kaydet</Button>
                                     <Button
-                                        className="bg-red-500 px-4 py-1 rounded-md text-white text-xs sm:text-sm "
+                                        className="z-10 bg-red-500 px-4 py-1 rounded-md text-white text-xs sm:text-sm "
                                         onClick={() => setEditMode(false)}>İptal</Button>
                                 </div>
                             </div>
